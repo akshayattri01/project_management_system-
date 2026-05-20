@@ -1,0 +1,24 @@
+import User from '../models/User.js';
+
+export const getUsers = async (_req, res, next) => {
+  try {
+    const users = await User.find().select('-password').sort({ name: 1 });
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserById = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.json(user);
+  } catch (error) {
+    return next(error);
+  }
+};
