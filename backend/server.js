@@ -16,33 +16,30 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect Database
+// Database connect
 connectDB();
 
-// Security Middleware
+// Middleware
 app.use(helmet());
 
-// CORS Fix
 app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://project-management-system.vercel.app'
+      'https://project-management-system-chi-ten.vercel.app'
     ],
     credentials: true
   })
 );
 
-// Body Parser
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Logger
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-// Health Check Route
+// Health route
 app.get('/api/health', (_req, res) => {
   res.json({
     status: 'ok',
@@ -50,12 +47,12 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Home Route
+// Home route
 app.get('/', (_req, res) => {
   res.send('API is running...');
 });
 
-// API Routes
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
@@ -65,7 +62,7 @@ app.use('/api/tasks', taskRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-// Start Server
+// Server start
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
