@@ -1,196 +1,214 @@
-# Team Task Manager
+# 🚀 Team Task Manager (MERN Stack)
 
-A full-stack role-based team task manager built with React, Vite, Tailwind CSS, Express, MongoDB, JWT, and bcrypt. Admins can create projects, manage project members, create and assign tasks, and track progress. Members can view assigned work and update task status.
+A full-stack **Team Task Management System** built using the **MERN Stack** that helps teams manage projects, assign tasks, assign members, and track project progress efficiently.
 
-## Features
+---
 
-- JWT signup/login/logout flow
-- bcrypt password hashing
-- Protected React routes
-- Role-based access control for admin and member users
-- Project create/list/delete flows
-- Task create/list/update/delete flows
-- Member-only assigned task visibility
-- Dashboard metrics for admins and members
-- Task search, status filtering, priority filtering, and priority levels
-- Responsive Tailwind sidebar layout
-- Dark mode toggle
-- Express validation and centralized error handling
-- Railway-ready environment configuration
+## 🌐 Live Project
 
-## Tech Stack
+### 🔗 Frontend (Vercel)
+https://project-management-system-chi-ten.vercel.app
 
-Frontend: React, Vite, Tailwind CSS, React Router, Axios
+### 🔗 Backend API (Render)
+https://project-management-system-apoy.onrender.com
 
-Backend: Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs, express-validator
+### 🔗 API Health Check
+https://project-management-system-apoy.onrender.com/api/health
 
-Deployment: Railway, MongoDB Atlas
+---
 
-## Project Structure
+## 📌 Features
 
-```text
-backend/
-  controllers/
-  models/
-  routes/
-  middleware/
-  config/
-  scripts/
-  server.js
-frontend/
-  src/
-    components/
-    context/
-    pages/
-    services/
-    App.jsx
-```
+✅ Secure User Authentication (Signup/Login)  
+✅ JWT Authentication & Authorization  
+✅ Role-Based Access (**Admin / Member**)  
+✅ Create and Manage Projects  
+✅ Assign Tasks to Team Members  
+✅ Dashboard for Project Overview  
+✅ Task Tracking & Progress Management  
+✅ Protected Routes  
+✅ MongoDB Database Integration  
+✅ Responsive UI Design  
+✅ Full Stack Deployment
 
-## Installation
+---
 
-### Backend
-
-```bash
-cd backend
-npm install
-cp .env.example .env
-npm run dev
-```
+## 🛠️ Tech Stack
 
 ### Frontend
+- React.js
+- React Router DOM
+- Tailwind CSS
+- Axios
+- Context API
+- Vite
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT Authentication
+- bcrypt.js
+- Helmet
+- Morgan
+- CORS
+- dotenv
+
+### Deployment
+- **Frontend:** Vercel  
+- **Backend:** Render  
+- **Database:** MongoDB Atlas
+
+---
+
+## 📂 Folder Structure
+
+```bash
+project-management-system/
+│
+├── frontend/
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── context/
+│   ├── services/
+│   └── assets/
+│
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+│
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+---
+
+## 🔐 Environment Variables
+
+### Backend `.env`
+
+```env
+NODE_ENV=production
+PORT=5000
+
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+CLIENT_URL=https://project-management-system-chi-ten.vercel.app
+```
+
+### Frontend `.env`
+
+```env
+VITE_API_URL=https://project-management-system-apoy.onrender.com
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/akshayattri01/project_management_system.git
+cd project_management_system
+```
+
+### 2️⃣ Install Dependencies
+
+#### Frontend
 
 ```bash
 cd frontend
 npm install
-cp .env.example .env
 npm run dev
 ```
 
-The frontend runs on `http://localhost:5173` and the backend runs on `http://localhost:5000` by default.
-
-## Environment Variables
-
-Backend `.env`:
-
-```env
-NODE_ENV=development
-PORT=5000
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/team-task-manager
-JWT_SECRET=replace-with-a-long-random-secret
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-```
-
-Frontend `.env`:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-## Sample Test Users
-
-After configuring MongoDB, run:
+#### Backend
 
 ```bash
 cd backend
-npm run seed
+npm install
+npm start
 ```
 
-Created users:
+---
 
-- Admin: `admin@example.com` / `password123`
-- Member: `member@example.com` / `password123`
+## 📸 Screenshots
 
-You can also create accounts from the Signup page.
+### Login Page
+(Add Screenshot Here)
+
+### Dashboard
+(Add Screenshot Here)
+
+### Task Management
+(Add Screenshot Here)
+
+---
 
 ## API Endpoints
 
-### Auth
+### Authentication
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-
-### Users
-
-- `GET /api/users`
-- `GET /api/users/dashboard`
-- `GET /api/users/:id`
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register User |
+| POST | `/api/auth/login` | Login User |
 
 ### Projects
 
-- `POST /api/projects` admin only
-- `GET /api/projects` admin sees all, members see assigned projects
-- `PUT /api/projects/:id` admin only
-- `DELETE /api/projects/:id` admin only
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/projects` | Get All Projects |
+| POST | `/api/projects` | Create Project |
 
 ### Tasks
 
-- `POST /api/tasks` admin only
-- `GET /api/tasks` admin sees all, members see assigned tasks
-- `PUT /api/tasks/:id` admin can update all fields, members can update assigned task status
-- `DELETE /api/tasks/:id` admin only
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/tasks` | Get All Tasks |
+| POST | `/api/tasks` | Create Task |
 
-Task query filters:
+---
 
-- `status=Pending|In Progress|Completed|Overdue`
-- `priority=Low|Medium|High`
-- `search=keyword`
-- `projectId=<mongo-id>`
+## 🚀 Deployment
 
-## Railway Deployment
+### Frontend Deployment (Vercel)
 
-### Backend Service
-
-1. Create a Railway project.
-2. Add a new service from this repository and set the root directory to `backend`.
-3. Add environment variables:
-
-```env
-NODE_ENV=production
-MONGO_URI=<your-mongodb-atlas-uri>
-JWT_SECRET=<long-random-secret>
-JWT_EXPIRES_IN=7d
-CLIENT_URL=<your-frontend-railway-url>
+```bash
+npm run build
 ```
 
-4. Deploy. Railway will run `npm start` from `backend/railway.toml`.
+### Backend Deployment (Render)
 
-### Frontend Service
-
-1. Add another Railway service from the same repository and set the root directory to `frontend`.
-2. Add environment variable:
-
-```env
-VITE_API_URL=<your-backend-railway-url>/api
+```bash
+npm start
 ```
 
-3. Deploy. Railway will build the Vite app and serve the production preview using the Railway `PORT`.
+---
 
-## Production Notes
+## 👨‍💻 Author
 
-- Use a strong `JWT_SECRET` with at least 32 random characters.
-- Restrict MongoDB Atlas network access to Railway egress where possible.
-- Keep `CLIENT_URL` aligned with deployed frontend domains for CORS.
-- Consider adding refresh tokens and audit logs for higher-security teams.
+### Ashu Attri
 
-## Screenshots
+📧 Email: aashuattri01@gmail.com  
+💻 GitHub: https://github.com/akshayattri01
 
-Add screenshots after deployment:
+---
 
-- `screenshots/login.png`
-- `screenshots/admin-dashboard.png`
-- `screenshots/task-list.png`
-- `screenshots/project-list.png`
-How to Run Project:
+## ⭐ Show Your Support
 
-1. Clone repository:
-   git clone https://github.com/akshayattri01/task-manager-backend
+If you like this project, please consider giving it a **Star ⭐** on GitHub.
 
-2. Install dependencies:
-   npm install
+---
 
-3. Start server:
-   npm start
+## 📜 License
 
-4. Open API:
-   http://tramway.proxy.rlwy.net:51428/api/health
+This project is licensed under the **MIT License**.
